@@ -21,7 +21,7 @@ const MobileSidebar = () => {
     <Sheet>
       <SheetTrigger>
         <div className="md:hidden">
-          <Menu />
+          <Menu color="black" />
         </div>
       </SheetTrigger>
       <SheetContent side="left" className="p-0">
