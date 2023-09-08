@@ -35,7 +35,7 @@ const VideoPage = () => {
     } catch (error: any) {
       console.log(error);
     } finally {
-      router.refresh;
+      router.refresh();
     }
   };
 

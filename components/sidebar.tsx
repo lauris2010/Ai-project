@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import { usePathname } from "next/navigation";
+import FreeCounter from "./FreeCounter";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 const routes = [
@@ -62,7 +63,11 @@ const routes = [
   },
 ];
 
-const Sidebar = () => {
+interface ISidebarProps {
+  apiLimitCount: number;
+}
+
+const Sidebar = ({ apiLimitCount = 0 }: ISidebarProps) => {
   const pathname = usePathname();
 
   return (
@@ -96,6 +101,7 @@ const Sidebar = () => {
           ))}
         </div>
       </div>
+      <FreeCounter apiLimitCount={apiLimitCount} />
     </div>
   );
 };
