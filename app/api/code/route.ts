@@ -2,7 +2,7 @@ import { auth } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-import {increaseApiLimit, checkApiLimit} from "@/lib/ApiLimit"
+import {incrementApiLimit, checkApiLimit} from "@/lib/ApiLimit"
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -48,7 +48,7 @@ export async function POST(
       model: "gpt-3.5-turbo",
       messages: [instructionMessage, ...messages]
     });
-    await increaseApiLimit()
+    await incrementApiLimit()
     return NextResponse.json(response.choices[0].message)
   } catch(error) {
     console.log('[CODE_ERROR]', error)

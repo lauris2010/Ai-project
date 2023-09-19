@@ -24,9 +24,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
+import { useProModal } from "@/hooks/UseProModal";
 
 const PhotoPage = () => {
   const router = useRouter();
+  const proModal = useProModal();
   const [photos, setPhotos] = useState<string[]>([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -52,7 +54,9 @@ const PhotoPage = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
       } else {
-        console.error("Something went wrong.");
+        if (error?.response?.status === 403) {
+          proModal.onOpen();
+        }
       }
     } finally {
       router.refresh();

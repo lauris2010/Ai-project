@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "./ui/card";
-import { MAX_FRE_COUNTS } from "@/constants";
+import { MAX_FREE_COUNTS } from "@/constants";
 import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import { Zap } from "lucide-react";
+import { useProModal } from "@/hooks/UseProModal";
 
 interface ISidebarProps {
   apiLimitCount: number;
@@ -11,6 +12,7 @@ interface ISidebarProps {
 
 const FreeCounter = ({ apiLimitCount = 0 }: ISidebarProps) => {
   const [mounted, setMounted] = useState(false);
+  const proModal = useProModal();
 
   useEffect(() => {
     setMounted(true);
@@ -26,14 +28,18 @@ const FreeCounter = ({ apiLimitCount = 0 }: ISidebarProps) => {
         <CardContent className="py-6">
           <div className="text-center text-sm text-white mb-4">
             <p>
-              {apiLimitCount} / {MAX_FRE_COUNTS} Free generations
+              {apiLimitCount} / {MAX_FREE_COUNTS} Free generations
             </p>
             <Progress
               className="h-3 mt-2"
-              value={(apiLimitCount / MAX_FRE_COUNTS) * 100}
+              value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
             />
           </div>
-          <Button className="w-full" variant="premium">
+          <Button
+            onClick={proModal.onOpen}
+            className="w-full"
+            variant="premium"
+          >
             Upgrade
             <Zap className="w-4 h-4 fill-white ml-2" />
           </Button>

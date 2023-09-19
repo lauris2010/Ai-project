@@ -2,7 +2,7 @@ import { auth } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 import Replicate from 'replicate'
 
-import {increaseApiLimit, checkApiLimit} from "@/lib/ApiLimit"
+import {incrementApiLimit, checkApiLimit} from "@/lib/ApiLimit"
 
 
 const replicate = new Replicate({
@@ -38,7 +38,7 @@ export async function POST(
         }
       }
     );
-    await increaseApiLimit()
+    await incrementApiLimit()
     return NextResponse.json(response)
   } catch(error) {
     console.log('video err', error)

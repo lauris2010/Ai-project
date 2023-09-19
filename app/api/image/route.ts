@@ -2,7 +2,7 @@ import { auth } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-import {increaseApiLimit, checkApiLimit} from "@/lib/ApiLimit"
+import {incrementApiLimit, checkApiLimit} from "@/lib/ApiLimit"
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -47,7 +47,7 @@ export async function POST(
       n: parseInt(amount, 10),
       size: resolution,
     });
-    await increaseApiLimit()
+    await incrementApiLimit()
     return NextResponse.json(response.data)
   } catch(error) {
     console.log('image err', error)
