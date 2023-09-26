@@ -8,9 +8,10 @@ import { useProModal } from "@/hooks/UseProModal";
 
 interface ISidebarProps {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
-const FreeCounter = ({ apiLimitCount = 0 }: ISidebarProps) => {
+const FreeCounter = ({ apiLimitCount = 0, isPro = false }: ISidebarProps) => {
   const [mounted, setMounted] = useState(false);
   const proModal = useProModal();
 
@@ -19,6 +20,10 @@ const FreeCounter = ({ apiLimitCount = 0 }: ISidebarProps) => {
   }, []);
 
   if (!mounted) {
+    return null;
+  }
+
+  if (isPro) {
     return null;
   }
 
