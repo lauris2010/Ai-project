@@ -16,6 +16,7 @@ import { Card } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { Check, Zap } from "lucide-react";
 import { Button } from "./ui/button";
+import toast from "react-hot-toast";
 
 const ProModal = () => {
   const proModal = useProModal();
@@ -27,7 +28,7 @@ const ProModal = () => {
       console.log(await response.data.url);
       window.location.href = (await response).data.url;
     } catch (error) {
-      console.log(error, "stripe client error");
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -63,6 +64,7 @@ const ProModal = () => {
         </DialogHeader>
         <DialogFooter>
           <Button
+            disabled={loading}
             onClick={onSubscribe}
             size="lg"
             variant="premium"

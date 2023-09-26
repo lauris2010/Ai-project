@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/select";
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
 import { useProModal } from "@/hooks/UseProModal";
+import toast from "react-hot-toast";
 
 const PhotoPage = () => {
   const router = useRouter();
@@ -56,6 +57,8 @@ const PhotoPage = () => {
       } else {
         if (error?.response?.status === 403) {
           proModal.onOpen();
+        } else {
+          toast.error("Something went wrong");
         }
       }
     } finally {
