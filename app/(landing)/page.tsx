@@ -1,5 +1,5 @@
-import LandingHero from "@/components/LandingHero";
-import LandingNavbar from "@/components/LandingNavbar";
+import LandingHero from "../../components/LandingHero";
+import LandingNavbar from "../../components/LandingNavbar";
 import React from "react";
 
 const LandingPage = () => {
